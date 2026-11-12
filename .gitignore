@@ -1,0 +1,17 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+
+# Build outputs and editor files
+**/target/
+**/build/
+node_modules/
+.vscode/
+.idea/
+*.log
+
+# Legacy notes file may contain local/demo credentials
+database/JalRakshak IMP notes.txt

@@ -1,0 +1,4171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="JalRakshak - AI Based Water Quality Anomaly Detection and Response Prioritisation">
+
+    <meta name="theme-color" content="#087f8c">
+    <title>JalRakshak | Water Intelligence Platform</title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+         ===================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- =====================================================
+         LEAFLET
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- =====================================================
+         JALRAKSHAK CSS
+         ===================================================== -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/help.css">
+    <link rel="stylesheet" href="css/waterbodies.css">
+
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/redesign.css">
+    <link rel="stylesheet" href="css/citizen-portal.css">
+    <link rel="stylesheet" href="css/water-insights.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MOBILE OVERLAY
+     ========================================================= -->
+
+<div id="pageOverlay"
+     class="page-overlay"></div>
+
+
+
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+<aside id="sidebar"
+       class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+
+            <i class="bi bi-droplet-fill"></i>
+
+        </div>
+
+        <div class="logo-text">
+
+            <h2>JalRakshak</h2>
+
+            <span>Water Intelligence</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="sidebar-nav">
+
+        <div class="nav-section-title">
+            MAIN
+        </div>
+
+
+        <!-- DASHBOARD -->
+
+        <a href="#"
+           class="nav-item active"
+           data-page="dashboard">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- WATER ANALYSIS -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="waterAnalysis">
+
+            <i class="bi bi-bar-chart-line-fill"></i>
+
+            <span>Water Analysis</span>
+
+        </a>
+
+
+        <!-- MAP -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="map">
+
+            <i class="bi bi-geo-alt-fill"></i>
+
+            <span>Monitoring Map</span>
+
+        </a>
+
+
+
+        <!-- WATERBODY INTELLIGENCE -->
+        <a href="#" class="nav-item" data-page="waterbodies">
+            <i class="bi bi-water"></i>
+            <span>Waterbody Intelligence</span>
+            <span class="nav-badge" id="waterbodyNavCount">—</span>
+        </a>
+
+        <a href="#" class="nav-item" data-page="waterInsights">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>History & Pollution Insights</span>
+        </a>
+
+
+        <div class="nav-section-title">
+            PUBLIC PORTAL
+        </div>
+
+        <a href="#" class="nav-item" data-page="citizenPortal">
+            <i class="bi bi-person-hearts"></i>
+            <span data-i18n="navCitizenPortal">Citizen Portal</span>
+        </a>
+
+
+        <div class="nav-section-title">
+            MONITORING
+        </div>
+
+
+        <!-- ALERTS -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="alerts">
+
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
+            <span>Alerts</span>
+
+            <span id="sidebarAlertCount"
+                  class="nav-badge">
+
+                2
+
+            </span>
+
+        </a>
+
+
+        <!-- RESPONSES -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="responses">
+
+            <i class="bi bi-clipboard-check-fill"></i>
+
+            <span>Response Management</span>
+
+        </a>
+
+
+        <!-- CITIZEN REPORTS -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="citizenReports">
+
+            <i class="bi bi-people-fill"></i>
+
+            <span>Citizen Reports</span>
+
+        </a>
+
+
+
+        <div class="nav-section-title">
+            SYSTEM
+        </div>
+
+
+        <!-- REPORTS -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="reports">
+
+            <i class="bi bi-file-earmark-bar-graph-fill"></i>
+
+            <span>Reports</span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="settings">
+
+            <i class="bi bi-gear-fill"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <!-- HELP -->
+
+        <a href="#"
+           class="nav-item"
+           data-page="help">
+
+            <i class="bi bi-question-circle-fill"></i>
+
+            <span>Help & Support</span>
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- SIDEBAR FOOTER -->
+
+    <div class="sidebar-footer">
+
+        <div class="system-status">
+
+            <span id="systemStatusDot"
+                  class="status-dot online"></span>
+
+            <span id="systemStatusText">
+                System Online
+            </span>
+
+        </div>
+
+        <small>
+            JalRakshak v1.0
+        </small>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main class="main-content">
+
+
+    <!-- =====================================================
+         TOP NAVBAR
+         ===================================================== -->
+
+    <header class="top-navbar">
+
+
+        <div class="navbar-left">
+
+            <!-- MOBILE MENU -->
+
+            <button id="menuButton"
+                    class="icon-button menu-button"
+                    aria-label="Open menu">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+
+            <div class="page-heading">
+
+                <h1 id="pageTitle">
+                    Water Quality Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    AI-powered water quality monitoring and response system
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="navbar-right">
+
+            <label class="language-switch" for="languageSelect" aria-label="Choose language">
+                <i class="bi bi-translate"></i>
+                <select id="languageSelect" title="Choose language">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                </select>
+            </label>
+
+
+            <!-- REFRESH -->
+
+            <button id="refreshButton"
+                    class="icon-button"
+                    title="Refresh">
+
+                <i class="bi bi-arrow-clockwise"></i>
+
+            </button>
+
+
+            <!-- THEME -->
+
+            <button id="themeButton"
+                    class="icon-button"
+                    title="Switch to Dark Mode"
+                    aria-label="Switch to Dark Mode">
+
+                <i class="bi bi-moon-fill"></i>
+
+            </button>
+
+
+            <!-- NOTIFICATIONS -->
+
+           <button id="notificationButton"
+        class="icon-button"
+        type="button">
+
+    <i class="bi bi-bell-fill"></i>
+
+    <span class="notification-dot"></span>
+
+</button>
+
+
+            <!-- USER -->
+
+            <div class="user-profile">
+
+                <div class="user-avatar">
+
+                    <i class="bi bi-person-fill"></i>
+
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Admin User</strong>
+
+                    <span>Administrator</span>
+
+                </div>
+
+                <i class="bi bi-chevron-down user-arrow"></i>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE CONTAINER
+         ===================================================== -->
+
+    <div class="page-container">
+
+
+
+        <!-- =================================================
+             DASHBOARD PAGE
+             ================================================= -->
+
+        <section id="dashboardPage"
+                 class="page-section active-page">
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome-section">
+
+                <div>
+
+                    <h2>
+                        Welcome to JalRakshak
+                    </h2>
+
+                    <p>
+                        Monitor water quality, detect anomalies,
+                        and prioritise response actions using
+                        intelligent data analysis.
+                    </p>
+
+                </div>
+
+                <div class="welcome-icon">
+
+                    <i class="bi bi-droplet-half"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LAST UPDATED -->
+
+            <div class="dashboard-meta">
+
+                <span>
+
+                    <i class="bi bi-clock"></i>
+
+                    Last updated:
+
+                    <strong id="lastUpdated">
+                        Loading...
+                    </strong>
+
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+                 ================================================= -->
+
+            <div class="stats-grid">
+
+
+                <!-- LOCATIONS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon location-icon">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Monitoring Locations
+                        </span>
+
+                        <h3 id="totalLocations">
+                            0
+                        </h3>
+
+                        <p>
+                            Active monitoring points
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SENSOR READINGS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon sensor-icon">
+
+                        <i class="bi bi-activity"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Verified Sensor Readings
+                        </span>
+
+                        <h3 id="totalSensorReadings">
+                            0
+                        </h3>
+
+                        <p>
+                            Reviewed database observations
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ALERTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon alert-icon">
+
+                        <i class="bi bi-bell-fill"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Total Alerts
+                        </span>
+
+                        <h3 id="totalAlerts">
+                            0
+                        </h3>
+
+                        <p>
+                            Detected anomalies
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HIGH ALERTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon danger-icon">
+
+                        <i class="bi bi-exclamation-octagon-fill"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            High Severity
+                        </span>
+
+                        <h3 id="highSeverityAlerts">
+                            0
+                        </h3>
+
+                        <p>
+                            Requires attention
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CITIZEN REPORTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon citizen-icon">
+
+                        <i class="bi bi-people-fill"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Citizen Reports
+                        </span>
+
+                        <h3 id="totalCitizenReports">
+                            0
+                        </h3>
+
+                        <p>
+                            Community submissions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PENDING RESPONSES -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon pending-icon">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Pending Responses
+                        </span>
+
+                        <h3 id="pendingResponses">
+                            0
+                        </h3>
+
+                        <p>
+                            Awaiting action
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPEN ALERTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon open-alert-icon">
+
+                        <i class="bi bi-exclamation-circle-fill"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            Open Alerts
+                        </span>
+
+                        <h3 id="openAlerts">
+                            0
+                        </h3>
+
+                        <p>
+                            Currently active
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- IN PROGRESS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon progress-icon">
+
+                        <i class="bi bi-arrow-repeat"></i>
+
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span class="stat-label">
+                            In Progress
+                        </span>
+
+                        <h3 id="inProgressResponses">
+                            0
+                        </h3>
+
+                        <p>
+                            Active response actions
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CHART + HEALTH
+                 ================================================= -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- CHART -->
+
+                <div class="dashboard-card chart-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Water Quality Trends
+                            </h3>
+
+                            <p>
+                                Recent verified sensor measurements
+                            </p>
+
+                        </div>
+
+                        <span id="chartLocationName"
+                              class="card-action">
+
+                            Monitoring Location
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas id="waterQualityChart"></canvas>
+
+
+                        <div id="waterQualityPlaceholder"
+                             class="chart-placeholder">
+
+                            <i class="bi bi-bar-chart"></i>
+
+                            <p>
+                                Loading water quality data...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HEALTH SCORE -->
+
+                <div class="dashboard-card health-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Water Health
+                            </h3>
+
+                            <p>
+                                Overall monitoring status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="health-score-container">
+
+                        <div class="health-circle">
+
+                            <div class="health-circle-inner">
+
+                                <strong id="waterHealthScore">
+                                    --
+                                </strong>
+
+                                <span>
+                                    Health Score
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="health-details">
+
+                        <div class="health-item">
+
+                            <span class="health-dot good"></span>
+
+                            <span>
+                                Normal
+                            </span>
+
+                        </div>
+
+                        <div class="health-item">
+
+                            <span class="health-dot warning"></span>
+
+                            <span>
+                                Warning
+                            </span>
+
+                        </div>
+
+                        <div class="health-item">
+
+                            <span class="health-dot danger"></span>
+
+                            <span>
+                                Critical
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RECENT ALERTS
+                 ================================================= -->
+
+            <div class="dashboard-card chart-card dashboard-waterbody-risk-card" style="margin-top:24px;">
+                <div class="card-header">
+                    <div>
+                        <h3>Verified Data Coverage</h3>
+                        <p>Database locations with and without verified sensor readings</p>
+                    </div>
+                    <span id="dashboardWaterbodyCount" class="card-action">Database locations</span>
+                </div>
+                <div class="chart-container" style="min-height:280px; position:relative;">
+                    <canvas id="waterbodyRiskPie" aria-label="Verified data coverage across database locations"></canvas>
+                    <div id="waterbodyRiskPiePlaceholder" class="chart-placeholder"><i class="bi bi-pie-chart"></i><p>Preparing waterbody distribution…</p></div>
+                </div>
+                <p class="wb-method-note" style="margin:12px 0 0;">Coverage counts use database locations and verified sensor records only. Locations without verified records are not assigned a risk category.</p>
+            </div>
+
+            <div class="dashboard-card alerts-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Water Quality Alerts
+                        </h3>
+
+                        <p>
+                            Latest detected anomalies
+                        </p>
+
+                    </div>
+
+                    <button id="viewAllAlertsButton"
+                            class="btn btn-sm btn-outline-danger"
+                            data-page="alerts">
+
+                        View All
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table class="table alerts-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Alert
+                                </th>
+
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Severity
+                                </th>
+
+                                <th>
+                                    Priority
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Detected
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="alertsTableBody">
+
+                            <tr>
+
+                                <td colspan="6">
+
+                                    <div class="loading-state">
+
+                                        Loading alerts...
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MONITORING LOCATIONS
+                 ================================================= -->
+
+            <div class="dashboard-card locations-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Monitoring Locations
+                        </h3>
+
+                        <p>
+                            Active water monitoring points
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="locationsGrid"
+                     class="locations-grid">
+
+                    <div class="loading-state">
+
+                        Loading monitoring locations...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             WATER ANALYSIS PAGE
+             ================================================= -->
+        <section id="waterAnalysisPage" class="page-section">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1>Water Analysis</h1>
+            <p>Analyze water quality parameters from monitoring locations.</p>
+        </div>
+
+        <button class="btn btn-primary" id="loadAnalysisButton">
+            <i class="bi bi-graph-up"></i>
+            Load Analysis
+        </button>
+    </div>
+
+
+    <!-- Location Selection -->
+    <div class="analysis-control-card">
+
+        <div class="control-group">
+
+            <label for="analysisLocationSelect">
+                <i class="bi bi-geo-alt"></i>
+                Monitoring Location
+            </label>
+
+            <select id="analysisLocationSelect">
+                <option value="">Select a location</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- Latest Reading -->
+    <div class="analysis-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Latest Water Quality</h2>
+                <p>Most recent sensor reading from the selected location.</p>
+            </div>
+
+            <span id="analysisRecordedAt" class="analysis-time">
+                No reading selected
+            </span>
+        </div>
+
+
+        <div class="water-parameter-grid">
+
+            <!-- pH -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-droplet"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">pH</span>
+                    <strong id="analysisPh">--</strong>
+                    <small id="analysisPhStatus">Waiting for data</small>
+                </div>
+
+            </div>
+
+
+            <!-- TDS -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-water"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">TDS</span>
+                    <strong id="analysisTds">--</strong>
+                    <small id="analysisTdsStatus">Waiting for data</small>
+                </div>
+
+            </div>
+
+
+            <!-- Turbidity -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-cloud-haze"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">Turbidity</span>
+                    <strong id="analysisTurbidity">--</strong>
+                    <small id="analysisTurbidityStatus">Waiting for data</small>
+                </div>
+
+            </div>
+
+
+            <!-- Dissolved Oxygen -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-wind"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">Dissolved Oxygen</span>
+                    <strong id="analysisDissolvedOxygen">--</strong>
+                    <small id="analysisDissolvedOxygenStatus">
+                        Waiting for data
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!-- Temperature -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-thermometer-half"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">Temperature</span>
+                    <strong id="analysisTemperature">--</strong>
+                    <small id="analysisTemperatureStatus">
+                        Waiting for data
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!-- Conductivity -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-lightning"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">Conductivity</span>
+                    <strong id="analysisConductivity">--</strong>
+                    <small id="analysisConductivityStatus">
+                        Waiting for data
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!-- BOD -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-bar-chart"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">BOD</span>
+                    <strong id="analysisBod">--</strong>
+                    <small id="analysisBodStatus">Waiting for data</small>
+                </div>
+
+            </div>
+
+
+            <!-- COD -->
+            <div class="parameter-card">
+
+                <div class="parameter-icon">
+                    <i class="bi bi-activity"></i>
+                </div>
+
+                <div class="parameter-info">
+                    <span class="parameter-name">COD</span>
+                    <strong id="analysisCod">--</strong>
+                    <small id="analysisCodStatus">Waiting for data</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Parameter Status -->
+    <div class="analysis-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Parameter Status</h2>
+                <p>Current readings compared with configured monitoring ranges.</p>
+            </div>
+        </div>
+
+        <div id="parameterStatusContainer" class="parameter-status-container">
+
+            <div class="analysis-empty-state">
+                <i class="bi bi-clipboard-data"></i>
+                <h3>No Analysis Loaded</h3>
+                <p>
+                    Select a monitoring location and load its latest water
+                    quality data.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Overall Water Health -->
+<div class="analysis-section">
+
+    <div class="section-heading">
+        <div>
+            <h2>Overall Water Health</h2>
+            <p>
+                A simplified JalRakshak health score based on the
+                current sensor parameters.
+            </p>
+        </div>
+    </div>
+
+    <div class="water-health-card">
+
+        <!-- Score -->
+        <div class="health-score-container">
+
+            <div class="health-score-circle">
+
+                <div class="health-score-value">
+                    <span id="waterHealthScore">--</span>
+                    <small>/100</small>
+                </div>
+
+            </div>
+
+            <div class="health-score-label">
+                <span id="waterHealthStatus">
+                    Analysis not available
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Summary -->
+        <div class="health-summary">
+
+            <h3>
+                <i class="bi bi-shield-check"></i>
+                Water Quality Summary
+            </h3>
+
+            <p id="waterHealthSummary">
+                Select a monitoring location and load the latest
+                sensor reading to generate a water quality summary.
+            </p>
+
+            <div class="health-stat-grid">
+
+                <div class="health-stat">
+
+                    <span class="health-stat-label">
+                        Normal
+                    </span>
+
+                    <strong id="normalParameterCount">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="health-stat">
+
+                    <span class="health-stat-label">
+                        Warning
+                    </span>
+
+                    <strong id="warningParameterCount">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="health-stat">
+
+                    <span class="health-stat-label">
+                        Critical
+                    </span>
+
+                    <strong id="criticalParameterCount">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- Historical Chart -->
+    <div class="analysis-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Historical Water Quality</h2>
+                <p>Water quality trends for the selected monitoring location.</p>
+            </div>
+        </div>
+
+        <div class="chart-card">
+
+            <canvas id="waterAnalysisChart"></canvas>
+
+            <div id="waterAnalysisChartEmpty" class="analysis-empty-state">
+                <i class="bi bi-bar-chart-line"></i>
+                <h3>No Historical Data</h3>
+                <p>
+                    Historical readings will appear here after selecting a
+                    monitoring location.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- =================================================
+             MAP PAGE
+             ================================================= -->
+
+        <section id="mapPage"
+                 class="page-section">
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Monitoring Map
+                        </h3>
+
+                        <p>
+                            Geographic view of water monitoring
+                            locations
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="map"
+                     class="map-container">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             WATERBODY INTELLIGENCE — DATABASE ONLY
+             ================================================= -->
+        <section id="waterbodiesPage" class="page-section">
+            <div class="wb-hero">
+                <div>
+                    <span class="wb-eyebrow"><i class="bi bi-stars"></i> JALRAKSHAK WATER INTELLIGENCE</span>
+                    <h2>Explore monitored waterbodies</h2>
+                    <p>Review verified sensor observations stored in the JalRakshak database. Locations without verified readings remain clearly marked as unavailable.</p>
+                </div>
+                <div class="wb-hero-stat"><strong id="wbTotalCount">—</strong><span>database locations</span></div>
+            </div>
+            <div class="wb-data-notice wb-database-notice"><i class="bi bi-database-check"></i><div><strong>Database-only readings</strong><span>Profiles, historical charts and screening use only sensor_data records marked VERIFIED with complete source and evidence metadata. Unverified, rejected, missing and demonstration readings are excluded. No synthetic values or fallback readings are generated.</span></div></div>
+            <div class="wb-filter-bar">
+                <label class="wb-search"><i class="bi bi-search"></i><input id="wbSearch" type="search" placeholder="Search waterbody, city or state…"></label>
+                <select id="wbTypeFilter" aria-label="Filter by waterbody type"><option value="ALL">All types</option><option value="RIVER">River</option><option value="LAKE">Lake</option><option value="RESERVOIR">Reservoir</option><option value="WETLAND">Wetland</option><option value="LAGOON">Lagoon</option><option value="ESTUARY">Estuary</option></select>
+                <select id="wbDataFilter" aria-label="Filter by verified database data"><option value="ALL">All database locations</option><option value="HAS_DATA">Has verified readings</option><option value="NO_DATA">No verified readings</option></select>
+                <button id="wbResetFilters" class="btn btn-outline-secondary" type="button"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+                <button id="wbRefreshData" class="btn btn-outline-primary" type="button"><i class="bi bi-arrow-clockwise"></i> Refresh database</button>
+            </div>
+            <div class="wb-kpi-grid">
+                <article class="wb-kpi"><span><i class="bi bi-geo-alt"></i> Locations in database</span><strong id="wbMapCount">—</strong><small>Returned by /api/locations</small></article>
+                <article class="wb-kpi"><span><i class="bi bi-database-check"></i> Locations with verified readings</span><strong id="wbVerifiedCount">—</strong><small>Verified records with source evidence</small></article>
+                <article class="wb-kpi"><span><i class="bi bi-clock-history"></i> Latest verified sample</span><strong id="wbLatestTimestamp">—</strong><small>Timestamp from sensor_data</small></article>
+                <article class="wb-kpi"><span><i class="bi bi-shield-check"></i> Safety status</span><strong>Screening only</strong><small>Not a health or safety certificate</small></article>
+            </div>
+            <div class="wb-main-grid">
+                <div class="dashboard-card wb-map-card">
+                    <div class="wb-card-heading"><div><h3><i class="bi bi-map"></i> Database monitoring locations</h3><p>Location names and map coordinates are loaded from the locations table. Marker colour indicates only whether verified readings exist.</p></div><span class="wb-map-pill"><i class="bi bi-circle-fill"></i> Database locations</span></div>
+                    <div id="waterbodyMap" role="application" aria-label="Map showing database monitoring locations"></div>
+                    <div class="wb-map-legend"><span><i class="wb-dot wb-verified"></i> Verified readings available</span><span><i class="wb-dot wb-no-data"></i> No verified readings</span></div>
+                </div>
+                <aside class="dashboard-card wb-selected-card">
+                    <div class="wb-card-heading"><div><h3>Waterbody profile</h3><p>Verified database observations and screening</p></div><i class="bi bi-droplet-half wb-profile-icon"></i></div>
+                    <div id="wbSelectedProfile" class="wb-profile-content"><div class="wb-empty"><i class="bi bi-cursor"></i><p>Select a database location to inspect its verified records.</p></div></div>
+                </aside>
+            </div>
+            <div class="wb-insight-grid">
+                <div class="dashboard-card">
+                    <div class="wb-card-heading"><div><h3><i class="bi bi-graph-up-arrow"></i> Verified historical observations</h3><p>Recorded turbidity and BOD values for the selected location</p></div></div>
+                    <div class="wb-chart-wrap"><canvas id="wbHistoryChart" aria-label="Verified database water quality history"></canvas></div>
+                    <div id="wbHistorySummary" class="wb-summary-strip">Choose a location to load verified database observations.</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="wb-card-heading"><div><h3><i class="bi bi-search-heart"></i> Observed parameter indicators</h3><p>Rule-based screening of actual verified measurements only; no pollution cause is inferred.</p></div></div>
+                    <div id="wbCauseAnalysis" class="wb-cause-list"><p class="wb-muted">Select a location to inspect its recorded parameter values.</p></div>
+                </div>
+            </div>
+            <div class="dashboard-card wb-directory-card">
+                <div class="wb-card-heading"><div><h3><i class="bi bi-list-ul"></i> Database location directory</h3><p id="wbDirectoryCaption">Loading locations from the database…</p></div><span id="wbResultCount" class="wb-result-count">—</span></div>
+                <div class="wb-directory-table-wrap"><table class="table wb-directory-table"><thead><tr><th>Waterbody</th><th>Region</th><th>Type</th><th>Verified readings</th><th>Drinking-water screen</th><th>Swimming screen</th><th>Latest sample</th><th></th></tr></thead><tbody id="wbDirectoryBody"><tr><td colspan="8">Loading database locations…</td></tr></tbody></table></div>
+                <div id="wbNoResults" class="wb-empty" hidden><i class="bi bi-search"></i><p>No database locations match these filters.</p></div>
+            </div>
+            <p class="wb-method-note"><strong>Safety and method note:</strong> Only verified database measurements are screened. Drinking-water screening checks available pH, TDS and turbidity indicators; swimming screening checks available pH, dissolved oxygen and BOD indicators. The current sensor schema does not store E. coli / fecal-coliform results or the full chemical test panels required for clearance. A screening result must never be treated as proof that water is safe. Follow current official advisories and accredited laboratory results.</p>
+        </section>
+
+
+        <!-- DATABASE-BACKED HISTORY, TREND ESTIMATES AND DATA PROVENANCE -->
+        <section id="waterInsightsPage" class="page-section">
+            <div class="wi-hero">
+                <div><span class="wi-eyebrow"><i class="bi bi-activity"></i> WATER QUALITY INTELLIGENCE</span>
+                    <h2>Waterbody History & Pollution Insights</h2>
+                    <p>Explore recorded sensor observations, cautious short-term trend estimates, and the source and verification details attached to each record.</p>
+                </div><div class="wi-hero-icon"><i class="bi bi-water"></i></div>
+            </div>
+            <div class="wi-notice"><i class="bi bi-shield-exclamation"></i><div><strong>Interpret results carefully</strong><span>History and predictions use only VERIFIED sensor_data records with complete source and evidence metadata from MySQL. The review queue still shows all records so the administrator can assess unverified entries. Predictions are simple statistical extrapolations, not validated AI forecasts. This page cannot certify drinking-water safety.</span></div></div>
+            <div class="wi-toolbar dashboard-card">
+                <label for="wiLocation">Select waterbody</label><select id="wiLocation"><option value="">Loading waterbodies…</option></select>
+                <button id="wiRefresh" class="btn btn-outline-secondary" type="button"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+            </div>
+            <div class="wi-kpis">
+                <article class="dashboard-card"><span>Verified observations</span><strong id="wiRecordCount">—</strong><small>Verified database records for selected site</small></article>
+                <article class="dashboard-card"><span>Latest sample date</span><strong id="wiLatestDate">—</strong><small>From recorded_at</small></article>
+                <article class="dashboard-card"><span>Verified records</span><strong id="wiVerifiedCount">—</strong><small>VERIFIED with complete source evidence</small></article>
+                <article class="dashboard-card"><span>Prediction availability</span><strong id="wiPredictionState">—</strong><small>Requires at least 3 dated readings</small></article>
+            </div>
+            <div class="wi-grid">
+                <article class="dashboard-card wi-card">
+                    <div class="wi-card-head"><div><h3><i class="bi bi-clock-history"></i> Waterbody history</h3><p>Recorded observations from the database, in chronological order.</p></div>
+                        <select id="wiHistoryMetric" aria-label="History parameter"><option value="ph">pH</option><option value="dissolvedOxygen">Dissolved oxygen (mg/L)</option><option value="bod">BOD (mg/L)</option><option value="cod">COD (mg/L)</option><option value="turbidity">Turbidity (NTU)</option><option value="tds">TDS (mg/L)</option><option value="temperature">Temperature (°C)</option><option value="conductivity">Conductivity</option></select>
+                    </div><div class="wi-chart"><canvas id="wiHistoryChart"></canvas></div><p id="wiHistoryMessage" class="wi-muted">Select a waterbody to load its recorded history.</p>
+                </article>
+                <article class="dashboard-card wi-card">
+                    <div class="wi-card-head"><div><h3><i class="bi bi-graph-up-arrow"></i> Pollution trend prediction</h3><p>7-day extrapolation from historical measurements, where enough data exists.</p></div></div>
+                    <div id="wiPredictionSummary" class="wi-prediction-empty">Select a waterbody. At least three valid readings on distinct dates are needed for each parameter.</div>
+                    <div class="wi-chart wi-prediction-chart"><canvas id="wiPredictionChart"></canvas></div>
+                    <p class="wi-method">Method: least-squares linear trend against sample date. Forecasts are shown parameter-by-parameter; no combined pollution score or health classification is inferred.</p>
+                </article>
+            </div>
+            <article class="dashboard-card wi-card wi-data-card">
+                <div class="wi-card-head"><div><h3><i class="bi bi-patch-check"></i> Data source & verification</h3><p>Inspect the provenance fields attached to the sensor records.</p></div><span class="wi-status-key">VERIFIED = source and verification marked in database</span></div>
+                <div class="wi-table-wrap"><table class="table wi-table"><thead><tr><th>Sample date</th><th>Source / provider</th><th>Method</th><th>Verification</th><th>Verified by / date</th><th>Evidence</th></tr></thead><tbody id="wiProvenanceBody"><tr><td colspan="6">Select a waterbody to inspect its data records.</td></tr></tbody></table></div>
+                <p class="wi-method">A VERIFIED label reflects metadata recorded by the project administrator; this page does not independently authenticate a laboratory, agency, URL or uploaded document. If fields are blank, the record is displayed as UNVERIFIED / SOURCE NOT RECORDED.</p>
+            </article>
+            <article class="dashboard-card wi-card wi-verification-admin-card">
+                <div class="wi-card-head"><div><h3><i class="bi bi-shield-lock"></i> Verification management</h3><p>Direct administrator mode: review database records, enter source evidence and approve or reject each record.</p></div></div>
+                <p id="wiVerifierAccessMessage" class="wi-muted">Direct administrator mode is active. Review decisions are written to the database.</p>
+                <p class="wi-method"><strong>Local demo mode:</strong> because this application has no login, the backend cannot distinguish an Administrator from a Data Verifier. Review actions are attributed to the direct Administrator session. Do not expose this API to an untrusted network.</p>
+                <div id="wiReviewPanel" hidden>
+                    <h4>Sensor records from the database</h4>
+                    <div class="wi-table-wrap"><table class="table wi-table"><thead><tr><th>Record</th><th>Waterbody ID</th><th>Sample date</th><th>Current status</th><th>Action</th></tr></thead><tbody id="wiReviewQueueBody"><tr><td colspan="5">Loading records…</td></tr></tbody></table></div>
+                </div>
+                <div id="wiReviewForm" class="wi-review-form" hidden>
+                    <h4 id="wiReviewFormTitle">Review sensor record</h4>
+                    <p id="wiReviewRecordSummary" class="wi-muted"></p>
+                    <div class="wi-review-grid">
+                        <label>Source / agency name<input id="wiSourceName" maxlength="200" required placeholder="e.g. MPCB / CPCB / accredited laboratory"></label>
+                        <label>Original report URL<input id="wiSourceUrl" type="url" maxlength="1000" required placeholder="https://…"></label>
+                        <label>Sampling / test method<input id="wiSampleMethod" maxlength="200" required placeholder="As stated in the report"></label>
+                        <label>Evidence reference<input id="wiEvidenceReference" maxlength="500" required placeholder="Report ID, page, sample ID"></label>
+                        <label class="wi-review-notes">Review notes<textarea id="wiReviewNotes" maxlength="1000" rows="3" placeholder="Explain how the date, site, parameter, value and unit were matched."></textarea></label>
+                    </div>
+                    <div class="wi-review-actions"><button id="wiApproveRecord" class="btn btn-success" type="button">Approve as VERIFIED</button><button id="wiRejectRecord" class="btn btn-outline-danger" type="button">Reject record</button><button id="wiCancelReview" class="btn btn-outline-secondary" type="button">Cancel</button></div>
+                    <p id="wiReviewFormMessage" class="wi-muted" role="status"></p>
+                </div>
+                <div id="wiAuditPanel" hidden><h4>Review history for selected record</h4><div id="wiAuditBody" class="wi-audit-list"></div></div>
+            </article>
+
+            <article class="dashboard-card wi-card wi-observations-card">
+                <div class="wi-card-head"><div><h3><i class="bi bi-table"></i> Historical observations</h3><p>Latest 50 database records for the selected waterbody.</p></div></div>
+                <div class="wi-table-wrap"><table class="table wi-table"><thead><tr><th>Date</th><th>pH</th><th>DO</th><th>BOD</th><th>COD</th><th>Turbidity</th><th>TDS</th></tr></thead><tbody id="wiObservationsBody"><tr><td colspan="7">No waterbody selected.</td></tr></tbody></table></div>
+            </article>
+        </section>
+
+        <!-- =================================================
+             CITIZEN PORTAL: WATER SAFETY NEAR ME + ASSISTANT
+             ================================================= -->
+        <section id="citizenPortalPage" class="page-section">
+            <div class="citizen-hero">
+                <div>
+                    <span class="citizen-eyebrow"><i class="bi bi-globe-asia-australia"></i> JALRAKSHAK PUBLIC PORTAL</span>
+                    <h2 data-i18n="citizenHeroTitle">Understand your local water. Take informed action.</h2>
+                    <p data-i18n="citizenHeroText">Find monitoring information near you and get simple answers about water quality.</p>
+                </div>
+                <div class="citizen-hero-icon"><i class="bi bi-droplet-half"></i></div>
+            </div>
+
+            <div class="citizen-trust-note"><i class="bi bi-shield-exclamation"></i><div><strong data-i18n="importantNote">Important safety note</strong><span data-i18n="safetyDisclaimer">Monitoring results are not a drinking-water certificate. A location without an open alert is not necessarily safe. Follow local official advisories and use accredited laboratory testing for drinking-water decisions.</span></div></div>
+
+            <div class="citizen-feature-grid">
+                <article class="dashboard-card citizen-card" id="nearbyWaterCard">
+                    <div class="citizen-card-heading"><div><span class="citizen-card-kicker" data-i18n="nearbyKicker">LOCAL MONITORING</span><h3><i class="bi bi-geo-alt-fill"></i> <span data-i18n="nearbyTitle">Water safety near me</span></h3><p data-i18n="nearbyIntro">Find monitored waterbodies close to your current or selected location.</p></div></div>
+                    <div class="nearby-controls">
+                        <button id="useMyLocationButton" class="btn btn-primary" type="button"><i class="bi bi-crosshair"></i> <span data-i18n="useLocation">Use my location</span></button>
+                        <span class="nearby-or" data-i18n="orSearch">or search</span>
+                        <input id="nearbySearchInput" class="form-control" type="search" placeholder="Enter city, village or waterbody" data-i18n-placeholder="nearbyPlaceholder" autocomplete="off">
+                        <button id="nearbySearchButton" class="btn btn-outline-primary" type="button" data-i18n="findButton">Find</button>
+                    </div>
+                    <p id="nearbyLocationMessage" class="nearby-message" role="status" aria-live="polite" data-i18n="locationPermissionHint">Your location is used only after you grant browser permission. You can search manually instead.</p>
+                    <div id="nearbyResults" class="nearby-results"><div class="citizen-empty"><i class="bi bi-map"></i><p data-i18n="nearbyEmpty">Choose your location or search for a city to see available monitoring sites.</p></div></div>
+                </article>
+
+                <article class="dashboard-card citizen-card assistant-card">
+                    <div class="citizen-card-heading"><div><span class="citizen-card-kicker" data-i18n="assistantKicker">ASK IN SIMPLE LANGUAGE</span><h3><i class="bi bi-stars"></i> <span data-i18n="assistantTitle">AI Water Assistant</span></h3><p data-i18n="assistantIntro">Ask about water-quality terms, monitoring readings or JalRakshak alerts.</p></div><span class="assistant-online"><i class="bi bi-circle-fill"></i> <span data-i18n="assistantPreview">Preview</span></span></div>
+                    <div class="assistant-suggestions">
+                        <button type="button" class="assistant-suggestion" data-question="What does pH mean?" data-question-hi="pH का क्या अर्थ है?" data-i18n="suggestPh">What is pH?</button>
+                        <button type="button" class="assistant-suggestion" data-question="Can I drink water from a river?" data-question-hi="क्या मैं नदी का पानी पी सकता हूँ?" data-i18n="suggestDrink">Can I drink river water?</button>
+                        <button type="button" class="assistant-suggestion" data-question="Show me the latest open alerts" data-question-hi="मुझे नवीनतम खुले अलर्ट दिखाएँ" data-i18n="suggestAlerts">Latest open alerts</button>
+                    </div>
+                    <div id="assistantMessages" class="assistant-messages" role="log" aria-live="polite">
+                        <div class="assistant-message assistant-bot"><span class="assistant-avatar"><i class="bi bi-droplet-fill"></i></span><div><strong data-i18n="assistantWelcomeTitle">Namaste! I'm JalRakshak's water assistant.</strong><p data-i18n="assistantWelcomeText">Ask me a question. I use the monitoring information currently available in this project and explain it in simple terms.</p></div></div>
+                    </div>
+                    <form id="assistantForm" class="assistant-form">
+                        <input id="assistantInput" class="form-control" type="text" maxlength="500" placeholder="Ask a water-related question…" data-i18n-placeholder="assistantPlaceholder" autocomplete="off" required>
+                        <button class="btn btn-primary" type="submit" aria-label="Send question"><i class="bi bi-send-fill"></i></button>
+                    </form>
+                    <p class="assistant-footnote" data-i18n="assistantFootnote">Assistant preview: answers are generated from available project data and built-in guidance. It is not a substitute for official or laboratory advice.</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- =================================================
+             ALERTS MANAGEMENT PAGE
+             ================================================= -->
+
+        <section id="alertsPage"
+                 class="page-section">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-section-header">
+
+                <div>
+
+                    <h2>
+                        Alerts Management
+                    </h2>
+
+                    <p>
+                        Monitor detected water quality anomalies
+                        and manage response status.
+                    </p>
+
+                </div>
+
+
+                <div class="d-flex gap-2 flex-wrap">
+                    <button id="createAlertButton" class="btn btn-outline-danger" type="button">
+                        <i class="bi bi-plus-circle"></i> Create Alert
+                    </button>
+                    <button id="alertsRefreshButton" class="btn btn-danger" type="button"
+                            onclick="refreshAlerts()">
+                        <i class="bi bi-arrow-clockwise"></i> Refresh Alerts
+                    </button>
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ALERT SUMMARY CARDS
+                 ================================================= -->
+
+            <div class="alert-summary-grid">
+
+
+                <!-- TOTAL -->
+
+                <div class="alert-summary-card">
+
+                    <div class="summary-icon total">
+
+                        <i class="bi bi-bell-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Alerts
+                        </span>
+
+                        <strong id="totalAlertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPEN -->
+
+                <div class="alert-summary-card">
+
+                    <div class="summary-icon open">
+
+                        <i class="bi bi-exclamation-circle-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Open Alerts
+                        </span>
+
+                        <strong id="openAlertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HIGH -->
+
+                <div class="alert-summary-card">
+
+                    <div class="summary-icon high">
+
+                        <i class="bi bi-exclamation-octagon-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            High Severity
+                        </span>
+
+                        <strong id="highAlertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MEDIUM -->
+
+                <div class="alert-summary-card">
+
+                    <div class="summary-icon medium">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Medium Severity
+                        </span>
+
+                        <strong id="mediumAlertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOW -->
+
+                <div class="alert-summary-card">
+
+                    <div class="summary-icon low">
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Low Severity
+                        </span>
+
+                        <strong id="lowAlertCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FILTER BAR
+                 ================================================= -->
+
+            <div class="dashboard-card alert-filter-card">
+
+                <div class="alert-filter-bar">
+
+
+                    <!-- STATUS -->
+
+                    <div class="filter-group">
+
+                        <label for="alertStatusFilter">
+
+                            <i class="bi bi-funnel"></i>
+
+                            Status
+
+                        </label>
+
+                        <select id="alertStatusFilter"
+                                class="form-select">
+
+                            <option value="ALL">
+                                All Statuses
+                            </option>
+
+                            <option value="OPEN">
+                                Open
+                            </option>
+
+                            <option value="RESOLVED">
+                                Resolved
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- SEVERITY -->
+
+                    <div class="filter-group">
+
+                        <label for="alertSeverityFilter">
+
+                            <i class="bi bi-shield-exclamation"></i>
+
+                            Severity
+
+                        </label>
+
+                        <select id="alertSeverityFilter"
+                                class="form-select">
+
+                            <option value="ALL">
+                                All Severities
+                            </option>
+
+                            <option value="HIGH">
+                                High
+                            </option>
+
+                            <option value="MEDIUM">
+                                Medium
+                            </option>
+
+                            <option value="LOW">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- FILTER BUTTONS -->
+
+                    <div class="filter-actions">
+
+                        <button class="btn btn-outline-secondary"
+                                onclick="filterAlertsByStatus('ALL'); filterAlertsBySeverity('ALL');">
+
+                            <i class="bi bi-x-circle"></i>
+
+                            Clear Filters
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ALERT TABLE
+                 ================================================= -->
+
+            <div class="dashboard-card alerts-management-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Detected Alerts
+                        </h3>
+
+                        <p>
+                            Water quality anomalies detected
+                            by the monitoring system.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table class="table alerts-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Alert
+                                </th>
+
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Severity
+                                </th>
+
+                                <th>
+                                    Priority
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Detected At
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="allAlertsTableBody">
+
+                            <tr>
+
+                                <td colspan="7">
+
+                                    <div class="loading-state">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Loading alerts...
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ALERT INFORMATION
+                 ================================================= -->
+
+            <div class="dashboard-card alert-information-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            About Alert Priority
+                        </h3>
+
+                        <p>
+                            How JalRakshak prioritises detected
+                            water quality anomalies.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="priority-information-grid">
+
+
+                    <div class="priority-info-item">
+
+                        <span class="severity-badge severity-high">
+                            HIGH
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Immediate attention
+                            </strong>
+
+                            <p>
+                                Significant water quality
+                                abnormality requiring prompt
+                                field investigation.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="priority-info-item">
+
+                        <span class="severity-badge severity-medium">
+                            MEDIUM
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Investigation recommended
+                            </strong>
+
+                            <p>
+                                Abnormal parameters requiring
+                                additional monitoring or
+                                sampling.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="priority-info-item">
+
+                        <span class="severity-badge severity-low">
+                            LOW
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Monitor
+                            </strong>
+
+                            <p>
+                                Minor variation that should
+                                continue to be monitored.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+     RESPONSE MANAGEMENT PAGE
+     ================================================= -->
+
+<section id="responsesPage" class="page-section">
+
+    <!-- PAGE HEADER -->
+    <div class="page-section-header">
+
+        <div>
+            <h2>
+                Response Management
+            </h2>
+
+            <p>
+                Assign, monitor, and track response actions
+                for detected water quality incidents.
+            </p>
+        </div>
+
+        <button id="createResponseButton"
+                class="btn btn-danger">
+
+            <i class="bi bi-plus-lg"></i>
+
+            Create Response
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         RESPONSE SUMMARY CARDS
+         ================================================= -->
+
+    <div class="response-summary-grid">
+
+        <!-- TOTAL RESPONSES -->
+
+        <div class="response-summary-card">
+
+            <div class="response-summary-icon total">
+
+                <i class="bi bi-clipboard-check-fill"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Total Responses
+                </span>
+
+                <strong id="totalResponseCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="response-summary-card">
+
+            <div class="response-summary-icon pending">
+
+                <i class="bi bi-hourglass-split"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <strong id="pendingResponseCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="response-summary-card">
+
+            <div class="response-summary-icon progress">
+
+                <i class="bi bi-arrow-repeat"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    In Progress
+                </span>
+
+                <strong id="inProgressResponseCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPLETED -->
+
+        <div class="response-summary-card">
+
+            <div class="response-summary-icon completed">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Completed
+                </span>
+
+                <strong id="completedResponseCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FILTER BAR
+         ================================================= -->
+
+    <div class="dashboard-card response-filter-card">
+
+        <div class="response-filter-bar">
+
+            <!-- SEARCH -->
+
+            <div class="response-search">
+
+                <label for="responseSearchInput">
+
+                    <i class="bi bi-search"></i>
+
+                    Search
+
+                </label>
+
+                <input
+                    type="text"
+                    id="responseSearchInput"
+                    class="form-control"
+                    placeholder="Search by location, action or officer..."
+                >
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="response-filter-group">
+
+                <label for="responseStatusFilter">
+
+                    <i class="bi bi-funnel"></i>
+
+                    Status
+
+                </label>
+
+                <select
+                    id="responseStatusFilter"
+                    class="form-select"
+                >
+
+                    <option value="ALL">
+                        All Statuses
+                    </option>
+
+                    <option value="PENDING">
+                        Pending
+                    </option>
+
+                    <option value="IN_PROGRESS">
+                        In Progress
+                    </option>
+
+                    <option value="COMPLETED">
+                        Completed
+                    </option>
+
+                    <option value="CANCELLED">
+                        Cancelled
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- REFRESH -->
+
+            <div class="response-filter-actions">
+
+                <button
+                    id="refreshResponsesButton"
+                    class="btn btn-outline-secondary"
+                >
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RESPONSE TABLE
+         ================================================= -->
+
+    <div class="dashboard-card responses-table-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Response Actions
+                </h3>
+
+                <p>
+                    Track actions taken against detected
+                    water quality anomalies.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table responses-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Alert
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Response Action
+                        </th>
+
+                        <th>
+                            Assigned To
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Created At
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="responsesTableBody">
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="loading-state">
+
+                                <i class="bi bi-clipboard-check"></i>
+
+                                <p>
+                                    No response data loaded yet.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RESPONSE INFORMATION
+         ================================================= -->
+
+    <div class="dashboard-card response-information-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Response Workflow
+                </h3>
+
+                <p>
+                    JalRakshak response actions follow a
+                    structured incident management workflow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="response-workflow-grid">
+
+            <!-- STEP 1 -->
+
+            <div class="response-workflow-item">
+
+                <div class="workflow-icon">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Alert Detected
+                    </strong>
+
+                    <p>
+                        A water quality anomaly is detected
+                        by the monitoring system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="response-workflow-item">
+
+                <div class="workflow-icon">
+
+                    <i class="bi bi-person-check-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Response Assigned
+                    </strong>
+
+                    <p>
+                        An appropriate response action is
+                        assigned to a responsible officer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="response-workflow-item">
+
+                <div class="workflow-icon">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Action In Progress
+                    </strong>
+
+                    <p>
+                        Field investigation, sampling, or
+                        another response action is performed.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="response-workflow-item">
+
+                <div class="workflow-icon">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Response Completed
+                    </strong>
+
+                    <p>
+                        The response is completed and the
+                        incident record is updated.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+    
+
+        <!-- =================================================
+     CITIZEN REPORTS PAGE
+     ================================================= -->
+
+<section id="citizenReportsPage"
+         class="page-section">
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-section-header">
+
+        <div>
+
+            <h2>
+                Citizen Reports
+            </h2>
+
+            <p>
+                Review and manage water quality
+                reports submitted by citizens.
+            </p>
+
+        </div>
+
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button id="createCitizenReportButton" class="btn btn-outline-danger" type="button">
+                <i class="bi bi-plus-circle"></i> Create Citizen Report
+            </button>
+            <button id="refreshCitizenReportsButton" class="btn btn-danger" type="button">
+                <i class="bi bi-arrow-clockwise"></i> Refresh Reports
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SUMMARY CARDS
+         ================================================= -->
+
+    <div class="citizen-report-summary-grid">
+
+
+        <!-- TOTAL -->
+
+        <div class="citizen-report-summary-card">
+
+            <div class="citizen-report-summary-icon total">
+
+                <i class="bi bi-file-earmark-text-fill"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Total Reports
+                </span>
+
+                <strong id="totalCitizenReportCount">
+                    0
+                </strong>
+
+                <small>
+                    Community submissions
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="citizen-report-summary-card">
+
+            <div class="citizen-report-summary-icon pending">
+
+                <i class="bi bi-hourglass-split"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <strong id="pendingCitizenReportCount">
+                    0
+                </strong>
+
+                <small>
+                    Awaiting review
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- UNDER REVIEW -->
+
+        <div class="citizen-report-summary-card">
+
+            <div class="citizen-report-summary-icon review">
+
+                <i class="bi bi-search"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Under Review
+                </span>
+
+                <strong id="reviewCitizenReportCount">
+                    0
+                </strong>
+
+                <small>
+                    Being investigated
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="citizen-report-summary-card">
+
+            <div class="citizen-report-summary-icon resolved">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Resolved
+                </span>
+
+                <strong id="resolvedCitizenReportCount">
+                    0
+                </strong>
+
+                <small>
+                    Reports completed
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FILTER BAR
+         ================================================= -->
+
+    <div class="dashboard-card citizen-report-filter-card">
+
+        <div class="citizen-report-filter-bar">
+
+
+            <!-- SEARCH -->
+
+            <div class="citizen-report-search">
+
+                <label for="citizenReportSearchInput">
+
+                    <i class="bi bi-search"></i>
+
+                    Search Reports
+
+                </label>
+
+                <div class="citizen-report-search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        id="citizenReportSearchInput"
+                        placeholder="Search by report, citizen, location..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="citizen-report-filter-group">
+
+                <label for="citizenReportStatusFilter">
+
+                    <i class="bi bi-funnel"></i>
+
+                    Status
+
+                </label>
+
+                <select
+                    id="citizenReportStatusFilter"
+                    class="form-select"
+                >
+
+                    <option value="ALL">
+                        All Statuses
+                    </option>
+
+                    <option value="PENDING">
+                        Pending
+                    </option>
+
+                    <option value="UNDER_REVIEW">
+                        Under Review
+                    </option>
+
+                    <option value="RESOLVED">
+                        Resolved
+                    </option>
+
+                    <option value="REJECTED">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="citizen-report-filter-group">
+
+                <label for="citizenReportCategoryFilter">
+
+                    <i class="bi bi-tags-fill"></i>
+
+                    Category
+
+                </label>
+
+                <select
+                    id="citizenReportCategoryFilter"
+                    class="form-select"
+                >
+
+                    <option value="ALL">
+                        All Categories
+                    </option>
+
+                    <option value="POLLUTION">
+                        Pollution
+                    </option>
+
+                    <option value="ODOR">
+                        Bad Odor
+                    </option>
+
+                    <option value="COLOR">
+                        Water Color
+                    </option>
+
+                    <option value="WASTE">
+                        Waste / Dumping
+                    </option>
+
+                    <option value="HEALTH">
+                        Health Concern
+                    </option>
+
+                    <option value="OTHER">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ACTION -->
+
+            <div class="citizen-report-filter-actions">
+
+                <button
+                    id="clearCitizenReportFiltersButton"
+                    class="btn btn-outline-secondary"
+                >
+
+                    <i class="bi bi-x-circle"></i>
+
+                    Clear
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT TABLE
+         ================================================= -->
+
+    <div class="dashboard-card citizen-reports-table-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Submitted Citizen Reports
+                </h3>
+
+                <p>
+                    Community-reported water quality
+                    concerns and environmental observations.
+                </p>
+
+            </div>
+
+            <span
+                id="citizenReportResultCount"
+                class="citizen-report-result-count"
+            >
+                0 reports
+            </span>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table citizen-reports-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Citizen
+                        </th>
+
+                        <th>
+                            Report
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Severity
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Submitted
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="citizenReportsTableBody">
+
+                    <tr>
+
+                        <td colspan="9">
+
+                            <div class="loading-state">
+
+                                <i class="bi bi-arrow-repeat"></i>
+
+                                Loading citizen reports...
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         INFORMATION SECTION
+         ================================================= -->
+
+    <div class="dashboard-card citizen-report-information-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Citizen Reporting Workflow
+                </h3>
+
+                <p>
+                    How community reports contribute to
+                    JalRakshak water quality monitoring.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="citizen-report-workflow-grid">
+
+
+            <div class="citizen-report-workflow-item">
+
+                <div class="citizen-workflow-icon submitted">
+
+                    <i class="bi bi-send-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        1. Citizen Submission
+                    </strong>
+
+                    <p>
+                        A citizen submits a water quality
+                        observation or environmental concern.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="citizen-report-workflow-item">
+
+                <div class="citizen-workflow-icon review">
+
+                    <i class="bi bi-search"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        2. Review
+                    </strong>
+
+                    <p>
+                        The report is reviewed by the
+                        JalRakshak monitoring team.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="citizen-report-workflow-item">
+
+                <div class="citizen-workflow-icon investigation">
+
+                    <i class="bi bi-clipboard-check-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        3. Investigation
+                    </strong>
+
+                    <p>
+                        Relevant reports can support
+                        field investigation and response.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="citizen-report-workflow-item">
+
+                <div class="citizen-workflow-icon resolved">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        4. Resolution
+                    </strong>
+
+                    <p>
+                        The report is resolved after the
+                        appropriate action is completed.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =================================================
+             REPORTS PAGE
+             ================================================= -->
+
+        <!-- =================================================
+     REPORTS & ANALYTICS PAGE
+     ================================================= -->
+<section id="reportsPage"
+         class="page-section">
+
+    <!-- PAGE HEADER -->
+    <div class="page-section-header">
+
+        <div>
+            <h2>
+                <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                Reports & Analytics
+            </h2>
+
+            <p>
+                Generate and review water quality, alert,
+                response, and citizen report summaries.
+            </p>
+        </div>
+
+        <button id="reportsRefreshButton"
+                class="btn btn-danger"
+                type="button">
+
+            <i class="bi bi-arrow-clockwise"></i>
+            Refresh Reports
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT OVERVIEW
+         ================================================= -->
+
+    <div class="report-summary-grid">
+
+        <!-- MONITORING LOCATIONS -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon location">
+                <i class="bi bi-geo-alt-fill"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    Monitoring Locations
+                </span>
+
+                <strong id="reportTotalLocations">
+                    0
+                </strong>
+
+                <small>
+                    Active monitoring points
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- SENSOR READINGS -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon sensor">
+                <i class="bi bi-activity"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    Verified Sensor Readings
+                </span>
+
+                <strong id="reportTotalSensorReadings">
+                    0
+                </strong>
+
+                <small>
+                    Verified database observations
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL ALERTS -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon alert">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    Total Alerts
+                </span>
+
+                <strong id="reportTotalAlerts">
+                    0
+                </strong>
+
+                <small>
+                    Detected anomalies
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- HIGH SEVERITY -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon high">
+                <i class="bi bi-exclamation-octagon-fill"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    High Severity
+                </span>
+
+                <strong id="reportHighSeverityAlerts">
+                    0
+                </strong>
+
+                <small>
+                    Requires attention
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- CITIZEN REPORTS -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon citizen">
+                <i class="bi bi-people-fill"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    Citizen Reports
+                </span>
+
+                <strong id="reportCitizenReports">
+                    0
+                </strong>
+
+                <small>
+                    Community submissions
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESPONSE ACTIONS -->
+        <div class="report-summary-card">
+
+            <div class="report-summary-icon response">
+                <i class="bi bi-clipboard-check-fill"></i>
+            </div>
+
+            <div class="report-summary-content">
+
+                <span>
+                    Response Actions
+                </span>
+
+                <strong id="reportResponseActions">
+                    0
+                </strong>
+
+                <small>
+                    Assigned response actions
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT GENERATION
+         ================================================= -->
+
+    <div class="dashboard-card reports-generator-card">
+
+        <div class="card-header">
+
+            <div>
+                <h3>
+                    <i class="bi bi-file-earmark-plus-fill"></i>
+                    Generate Reports
+                </h3>
+
+                <p>
+                    Select a report type to generate a detailed
+                    system report.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="reports-generator-grid">
+
+
+            <!-- WATER QUALITY REPORT -->
+            <div class="report-type-card">
+
+                <div class="report-type-icon water-quality">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+
+                <div class="report-type-content">
+
+                    <h4>
+                        Water Quality Report
+                    </h4>
+
+                    <p>
+                        Review verified sensor readings and water quality
+                        parameters for monitoring locations.
+                    </p>
+
+                    <div class="report-control-group">
+
+                        <label for="reportLocationSelect">
+                            Monitoring Location
+                        </label>
+
+                        <select id="reportLocationSelect">
+                            <option value="">
+                                Select location
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="report-control-group">
+
+                        <label for="reportPeriodSelect">
+                            Reporting Period
+                        </label>
+
+                        <select id="reportPeriodSelect">
+
+                            <option value="latest">
+                                Latest Reading
+                            </option>
+
+                            <option value="7">
+                                Last 7 Days
+                            </option>
+
+                            <option value="30">
+                                Last 30 Days
+                            </option>
+
+                            <option value="90">
+                                Last 90 Days
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button id="generateWaterQualityReportButton"
+                            class="report-action-button"
+                            type="button">
+
+                        <i class="bi bi-file-earmark-medical"></i>
+                        Generate Report
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALERT REPORT -->
+            <div class="report-type-card">
+
+                <div class="report-type-icon alert-report">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <div class="report-type-content">
+
+                    <h4>
+                        Alert Report
+                    </h4>
+
+                    <p>
+                        Review detected anomalies, severity,
+                        priority scores, and alert status.
+                    </p>
+
+                    <div class="report-feature-list">
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Alert severity
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Priority scores
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Alert status
+                        </span>
+
+                    </div>
+
+                    <button id="generateAlertReportButton"
+                            class="report-action-button"
+                            type="button">
+
+                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        Generate Report
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESPONSE REPORT -->
+            <div class="report-type-card">
+
+                <div class="report-type-icon response-report">
+                    <i class="bi bi-clipboard-check-fill"></i>
+                </div>
+
+                <div class="report-type-content">
+
+                    <h4>
+                        Response Report
+                    </h4>
+
+                    <p>
+                        Review assigned actions, officers,
+                        response status, and completion details.
+                    </p>
+
+                    <div class="report-feature-list">
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Assigned actions
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Response status
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Completion tracking
+                        </span>
+
+                    </div>
+
+                    <button id="generateResponseReportButton"
+                            class="report-action-button"
+                            type="button">
+
+                        <i class="bi bi-file-earmark-check"></i>
+                        Generate Report
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CITIZEN REPORT SUMMARY -->
+            <div class="report-type-card">
+
+                <div class="report-type-icon citizen-report">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div class="report-type-content">
+
+                    <h4>
+                        Citizen Report Summary
+                    </h4>
+
+                    <p>
+                        Review community-submitted reports,
+                        categories, priorities, and statuses.
+                    </p>
+
+                    <div class="report-feature-list">
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Report categories
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Citizen submissions
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Report status
+                        </span>
+
+                    </div>
+
+                    <button id="generateCitizenReportButton"
+                            class="report-action-button"
+                            type="button">
+
+                        <i class="bi bi-file-earmark-person"></i>
+                        Generate Report
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GENERATED REPORT PREVIEW
+         ================================================= -->
+
+    <div class="dashboard-card report-preview-card">
+
+        <div class="card-header">
+
+            <div>
+                <h3>
+                    <i class="bi bi-eye-fill"></i>
+                    Report Preview
+                </h3>
+
+                <p>
+                    Generated report information will appear here.
+                </p>
+            </div>
+
+            <span class="report-preview-status">
+                Ready
+            </span>
+
+        </div>
+
+
+        <div id="reportPreviewContainer"
+             class="report-preview-container">
+
+            <div class="report-empty-state">
+
+                <div class="report-empty-icon">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+
+                <h4>
+                    No Report Generated
+                </h4>
+
+                <p>
+                    Select a report type above to generate
+                    and preview a report.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- =================================================
+     SETTINGS PAGE
+     ================================================= -->
+
+<section id="settingsPage"
+         class="page-section">
+
+    <!-- PAGE HEADER -->
+    <div class="page-section-header">
+
+        <div>
+            <h2>
+                <i class="bi bi-gear-fill"></i>
+                Settings
+            </h2>
+
+            <p>
+                Configure JalRakshak application preferences
+                and monitoring behaviour.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SETTINGS CONTAINER
+         ================================================= -->
+
+    <div class="settings-container">
+
+
+        <!-- =================================================
+             APPEARANCE
+             ================================================= -->
+
+        <div class="settings-card">
+
+            <div class="settings-card-header">
+
+                <div class="settings-card-icon appearance">
+                    <i class="bi bi-palette-fill"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        Appearance
+                    </h3>
+
+                    <p>
+                        Customize how JalRakshak looks.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-option">
+
+                <div class="settings-option-content">
+
+                    <div>
+                        <strong>
+                            Dark Mode
+                        </strong>
+
+                        <span>
+                            Use a darker interface for
+                            low-light environments.
+                        </span>
+                    </div>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="settingsDarkMode"
+                    >
+
+                    <span class="settings-slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+             ================================================= -->
+
+        <div class="settings-card">
+
+            <div class="settings-card-header">
+
+                <div class="settings-card-icon notifications">
+                    <i class="bi bi-bell-fill"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        Notifications
+                    </h3>
+
+                    <p>
+                        Control JalRakshak system notifications.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-option">
+
+                <div class="settings-option-content">
+
+                    <div>
+                        <strong>
+                            Enable Notifications
+                        </strong>
+
+                        <span>
+                            Show notification indicators for
+                            system alerts and activity.
+                        </span>
+                    </div>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="settingsNotifications"
+                    >
+
+                    <span class="settings-slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DATA REFRESH
+             ================================================= -->
+
+        <div class="settings-card">
+
+            <div class="settings-card-header">
+
+                <div class="settings-card-icon refresh">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        Data Refresh
+                    </h3>
+
+                    <p>
+                        Control how frequently dashboard data
+                        is refreshed.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-option">
+
+                <div class="settings-option-content">
+
+                    <div>
+                        <strong>
+                            Automatic Refresh
+                        </strong>
+
+                        <span>
+                            Automatically refresh monitoring data.
+                        </span>
+                    </div>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="settingsAutoRefresh"
+                    >
+
+                    <span class="settings-slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="settings-option">
+
+                <div class="settings-option-content">
+
+                    <div>
+                        <strong>
+                            Refresh Interval
+                        </strong>
+
+                        <span>
+                            Choose how frequently data is refreshed.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <select
+                    id="settingsRefreshInterval"
+                    class="settings-select"
+                >
+
+                    <option value="30000">
+                        30 Seconds
+                    </option>
+
+                    <option value="60000">
+                        1 Minute
+                    </option>
+
+                    <option value="300000">
+                        5 Minutes
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD PREFERENCES
+             ================================================= -->
+
+        <div class="settings-card">
+
+            <div class="settings-card-header">
+
+                <div class="settings-card-icon dashboard">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        Dashboard Preferences
+                    </h3>
+
+                    <p>
+                        Configure dashboard display behaviour.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-option">
+
+                <div class="settings-option-content">
+
+                    <div>
+                        <strong>
+                            Show Notification Badge
+                        </strong>
+
+                        <span>
+                            Display the notification indicator
+                            in the top navigation.
+                        </span>
+                    </div>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="settingsNotificationBadge"
+                    >
+
+                    <span class="settings-slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SYSTEM INFORMATION
+             ================================================= -->
+
+        <div class="settings-card">
+
+            <div class="settings-card-header">
+
+                <div class="settings-card-icon system">
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        System Information
+                    </h3>
+
+                    <p>
+                        Current JalRakshak application information.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-system-grid">
+
+                <div class="settings-system-item">
+
+                    <span>
+                        Application
+                    </span>
+
+                    <strong>
+                        JalRakshak
+                    </strong>
+
+                </div>
+
+
+                <div class="settings-system-item">
+
+                    <span>
+                        Version
+                    </span>
+
+                    <strong>
+                        v1.0
+                    </strong>
+
+                </div>
+
+
+                <div class="settings-system-item">
+
+                    <span>
+                        Backend
+                    </span>
+
+                    <strong>
+                        Spring Boot
+                    </strong>
+
+                </div>
+
+
+                <div class="settings-system-item">
+
+                    <span>
+                        Database
+                    </span>
+
+                    <strong>
+                        MySQL
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SETTINGS ACTIONS
+             ================================================= -->
+
+        <div class="settings-actions">
+
+            <button
+                id="resetSettingsButton"
+                type="button"
+                class="settings-reset-button"
+            >
+
+                <i class="bi bi-arrow-counterclockwise"></i>
+
+                Reset to Default
+
+            </button>
+
+
+            <button
+                id="saveSettingsButton"
+                type="button"
+                class="settings-save-button"
+            >
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                Save Settings
+
+            </button>
+
+        </div>
+
+
+        <!-- SETTINGS MESSAGE -->
+
+        <div
+            id="settingsMessage"
+            class="settings-message"
+            aria-live="polite"
+        ></div>
+
+    </div>
+
+</section>
+
+        <!-- =================================================
+             HELP PAGE
+             ================================================= -->
+        <section id="helpPage" class="page-section">
+            <div class="help-page-header"><div><span class="help-eyebrow">JALRAKSHAK SUPPORT CENTER</span><h2><i class="bi bi-question-circle-fill"></i> Help & Support</h2><p>Learn how to use JalRakshak, understand alerts, monitor water quality, and manage response actions.</p></div><div class="help-status-card"><i class="bi bi-headset"></i><div><strong>Support Ready</strong><span>Guides and quick help are available below.</span></div></div></div>
+            <div class="help-search-card"><div class="help-search-icon"><i class="bi bi-search"></i></div><div class="help-search-content"><label for="helpSearchInput">Search Help</label><input id="helpSearchInput" type="search" placeholder="Search for alerts, dashboard, reports, map..." autocomplete="off"></div><button id="clearHelpSearchButton" class="btn btn-secondary" type="button">Clear</button></div>
+            <div class="help-quick-grid">
+                <button class="help-quick-card" type="button" data-help-target="getting-started"><span class="help-quick-icon blue"><i class="bi bi-rocket-takeoff-fill"></i></span><span><strong>Getting Started</strong><small>Learn the main workflow</small></span></button>
+                <button class="help-quick-card" type="button" data-help-target="alerts"><span class="help-quick-icon red"><i class="bi bi-exclamation-triangle-fill"></i></span><span><strong>Alerts</strong><small>Understand severity and priority</small></span></button>
+                <button class="help-quick-card" type="button" data-help-target="responses"><span class="help-quick-icon green"><i class="bi bi-clipboard-check-fill"></i></span><span><strong>Responses</strong><small>Track incident actions</small></span></button>
+                <button class="help-quick-card" type="button" data-help-target="reports"><span class="help-quick-icon purple"><i class="bi bi-file-earmark-bar-graph-fill"></i></span><span><strong>Reports</strong><small>Generate monitoring reports</small></span></button>
+            </div>
+            <div class="help-content-grid"><div class="help-main-column">
+                <div class="dashboard-card help-section-card" data-help-section="getting-started"><div class="help-section-title"><span class="help-section-icon blue"><i class="bi bi-rocket-takeoff-fill"></i></span><div><h3>Getting Started</h3><p>A simple workflow for using JalRakshak.</p></div></div><div class="help-steps"><div class="help-step"><b>1</b><div><strong>Check the Dashboard</strong><p>Review water quality statistics, recent activity, and current system status.</p></div></div><div class="help-step"><b>2</b><div><strong>Analyse Water Quality</strong><p>Open Water Analysis to inspect monitoring readings and identify abnormal conditions.</p></div></div><div class="help-step"><b>3</b><div><strong>Review Alerts</strong><p>Use Alerts to identify incidents that need attention and review their severity and priority.</p></div></div><div class="help-step"><b>4</b><div><strong>Take Action</strong><p>Use Response Management to assign, track, and complete response actions.</p></div></div></div></div>
+                <div class="dashboard-card help-section-card" data-help-section="alerts"><div class="help-section-title"><span class="help-section-icon red"><i class="bi bi-exclamation-triangle-fill"></i></span><div><h3>Understanding Alerts</h3><p>How to interpret detected water-quality incidents.</p></div></div><div class="help-alert-guide"><div class="help-alert-row high"><span>HIGH</span><div><strong>Immediate attention</strong><p>Significant water-quality abnormality requiring prompt field investigation.</p></div></div><div class="help-alert-row medium"><span>MEDIUM</span><div><strong>Investigation recommended</strong><p>Abnormal parameters requiring additional monitoring or sampling.</p></div></div><div class="help-alert-row low"><span>LOW</span><div><strong>Monitor</strong><p>Minor variation that should continue to be monitored.</p></div></div></div></div>
+                <div class="dashboard-card help-section-card" data-help-section="responses"><div class="help-section-title"><span class="help-section-icon green"><i class="bi bi-clipboard-check-fill"></i></span><div><h3>Response Management</h3><p>Track what happens after an alert is detected.</p></div></div><div class="help-faq-list"><details open><summary>What does Pending mean?</summary><p>The response has been created but work has not started yet.</p></details><details><summary>What does In Progress mean?</summary><p>The assigned response action is currently being carried out.</p></details><details><summary>What does Completed mean?</summary><p>The response action has been completed and the completion time can be recorded.</p></details></div></div>
+                <div class="dashboard-card help-section-card" data-help-section="reports"><div class="help-section-title"><span class="help-section-icon purple"><i class="bi bi-file-earmark-bar-graph-fill"></i></span><div><h3>Reports & Monitoring</h3><p>Use reports to turn monitoring data into useful summaries.</p></div></div><div class="help-feature-grid"><div><i class="bi bi-droplet-half"></i><strong>Water Quality</strong><p>Review readings for a selected monitoring location.</p></div><div><i class="bi bi-bell-fill"></i><strong>Alert Report</strong><p>Review detected incidents and their priorities.</p></div><div><i class="bi bi-clipboard-check"></i><strong>Response Report</strong><p>Review assigned actions and completion status.</p></div><div><i class="bi bi-people-fill"></i><strong>Citizen Summary</strong><p>Review community-submitted water-quality observations.</p></div></div></div>
+            </div><aside class="help-side-column"><div class="dashboard-card help-contact-card"><div class="help-side-icon"><i class="bi bi-life-preserver"></i></div><h3>Need More Help?</h3><p>If something in the interface is not working, check the quick troubleshooting steps first.</p><button id="helpTroubleshootingButton" class="btn btn-primary" type="button"><i class="bi bi-tools"></i> Troubleshooting</button></div><div id="helpTroubleshootingPanel" class="dashboard-card help-troubleshooting" hidden><h3><i class="bi bi-tools"></i> Quick Troubleshooting</h3><ul><li>Refresh the page if data appears stale.</li><li>Make sure the Spring Boot backend is running on <code>localhost:8080</code>.</li><li>Check the browser console for frontend errors.</li><li>If a table is empty, verify that the corresponding backend API returns data.</li></ul></div><div class="dashboard-card help-system-card"><h3><i class="bi bi-info-circle-fill"></i> System Guide</h3><div><span>Frontend</span><strong>HTML / CSS / JavaScript</strong></div><div><span>Backend</span><strong>Spring Boot</strong></div><div><span>Database</span><strong>MySQL</strong></div><div><span>API</span><strong>REST endpoints</strong></div></div></aside></div>
+            <div id="helpNoResults" class="help-no-results" hidden><i class="bi bi-search"></i><h3>No help topics found</h3><p>Try searching for a different topic.</p></div>
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     NOTIFICATION PANEL
+     ========================================================= -->
+
+<div id="notificationPanel"
+     class="notification-panel">
+
+
+    <div class="notification-header">
+
+        <div>
+
+            <h3>
+                Notifications
+            </h3>
+
+            <span>
+                Recent system activity
+            </span>
+
+        </div>
+
+
+        <button id="closeNotificationButton"
+                class="icon-button">
+
+            <i class="bi bi-x-lg"></i>
+
+        </button>
+
+    </div>
+
+
+    <div id="notificationList"
+         class="notification-list">
+
+        <div class="empty-notification">
+
+            <i class="bi bi-bell-slash"></i>
+
+            <p>
+                No new notifications
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     BOOTSTRAP JS
+     ========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     CHART.JS
+     ========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     LEAFLET JS
+     ========================================================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+
+<!-- =========================================================
+     JALRAKSHAK JAVASCRIPT
+     ========================================================= -->
+
+<script src="js/app.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+<script src="js/charts.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/alerts.js"></script>
+
+<script src="js/theme.js"></script>
+
+<script src="js/map.js"></script>
+<script src="js/waterbodies.js"></script>
+<script src="js/water-insights.js"></script>
+
+<script src="js/notifications.js"></script>
+
+<script src="js/water-analysis.js"></script>
+
+<script src="js/response-management.js"></script>
+
+<script src="js/citizen-reports.js"></script>
+
+<script src="js/reports.js"></script>
+
+<script src="js/settings.js"></script>
+
+<script src="js/help.js"></script>
+<script src="js/ux-enhancements.js"></script>
+<script src="js/operations-enhancements.js"></script>
+<script src="js/language.js"></script>
+<script src="js/citizen-portal.js"></script>
+
+
+</body>
+
+</html>

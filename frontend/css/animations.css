@@ -1,0 +1,534 @@
+/* =========================================================
+   JALRAKSHAK - ANIMATIONS
+   File: animations.css
+   ========================================================= */
+
+
+/* =========================================================
+   FADE ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   SLIDE ANIMATIONS
+   ========================================================= */
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   SCALE ANIMATIONS
+   ========================================================= */
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+}
+
+
+/* =========================================================
+   SIDEBAR ANIMATION
+   ========================================================= */
+
+@keyframes sidebarSlide {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   NOTIFICATION ANIMATION
+   ========================================================= */
+
+@keyframes notificationSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+
+/* =========================================================
+   PULSE ANIMATION
+   ========================================================= */
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseDot {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   GLOW ANIMATION
+   ========================================================= */
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 rgba(211, 47, 47, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 18px rgba(211, 47, 47, 0.25);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(211, 47, 47, 0);
+    }
+}
+
+
+/* =========================================================
+   LOADING / SHIMMER
+   ========================================================= */
+
+@keyframes shimmer {
+    0% {
+        background-position: -500px 0;
+    }
+
+    100% {
+        background-position: 500px 0;
+    }
+}
+
+.loading-shimmer {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e8e8e8 50%,
+        #f0f0f0 75%
+    );
+
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+
+/* =========================================================
+   ROTATION
+   ========================================================= */
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    animation: rotate 1s linear infinite;
+}
+
+
+/* =========================================================
+   BUTTON LOADING SPINNER
+   ========================================================= */
+
+@keyframes buttonSpinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button-spinner {
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    animation: buttonSpinner 0.8s linear infinite;
+}
+
+
+/* =========================================================
+   ALERT ANIMATION
+   ========================================================= */
+
+@keyframes alertPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.alert-pulse {
+    animation: alertPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   SUCCESS ANIMATION
+   ========================================================= */
+
+@keyframes successPop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-pop {
+    animation: successPop 0.4s ease-out;
+}
+
+
+/* =========================================================
+   DASHBOARD ENTRY ANIMATIONS
+   ========================================================= */
+
+.welcome-section {
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.stat-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.dashboard-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.location-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+
+/* =========================================================
+   STAGGERED CARD ANIMATIONS
+   ========================================================= */
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.stat-card:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+.stat-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.stat-card:nth-child(6) {
+    animation-delay: 0.30s;
+}
+
+.stat-card:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.stat-card:nth-child(8) {
+    animation-delay: 0.40s;
+}
+
+
+.location-card:nth-child(1) {
+    animation-delay: 0.10s;
+}
+
+.location-card:nth-child(2) {
+    animation-delay: 0.20s;
+}
+
+.location-card:nth-child(3) {
+    animation-delay: 0.30s;
+}
+
+.location-card:nth-child(4) {
+    animation-delay: 0.40s;
+}
+
+
+/* =========================================================
+   HOVER ANIMATIONS
+   ========================================================= */
+
+.stat-card,
+.dashboard-card,
+.location-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ICON HOVER
+   ========================================================= */
+
+.stat-icon {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+   ========================================================= */
+
+button,
+.btn,
+.nav-link {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   LINK HOVER
+   ========================================================= */
+
+a {
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* =========================================================
+   PAGE TRANSITION
+   ========================================================= */
+
+.page-section {
+    animation: fadeIn 0.4s ease-out;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   Accessibility support
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

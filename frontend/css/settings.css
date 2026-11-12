@@ -1,0 +1,270 @@
+/* =========================================================
+   JALRAKSHAK SETTINGS PAGE
+   ========================================================= */
+
+.settings-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.settings-card {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 24px;
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 14px;
+    box-shadow: var(--shadow-small, 0 4px 14px rgba(0, 0, 0, 0.05));
+}
+
+.settings-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border, #f1f5f9);
+}
+
+.settings-card-header h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary, #1f2937);
+}
+
+.settings-card-header p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.5;
+}
+
+.settings-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    font-size: 20px;
+}
+
+.settings-card-icon.appearance { background: #ede9fe; color: #7c3aed; }
+.settings-card-icon.notifications { background: #fef3c7; color: #d97706; }
+.settings-card-icon.refresh { background: #dbeafe; color: #2563eb; }
+.settings-card-icon.dashboard { background: #dcfce7; color: #16a34a; }
+.settings-card-icon.system { background: #f3f4f6; color: #4b5563; }
+
+.settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border, #f1f5f9);
+}
+
+.settings-option:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.settings-option-content { min-width: 0; }
+
+.settings-option-content strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary, #1f2937);
+}
+
+.settings-option-content span {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.5;
+}
+
+.settings-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.settings-switch input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.settings-slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: #d1d5db;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+
+.settings-slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.settings-switch input:checked + .settings-slider { background: #2563eb; }
+.settings-switch input:checked + .settings-slider::before { transform: translateX(22px); }
+
+.settings-select {
+    min-width: 150px;
+    padding: 9px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: var(--surface, #ffffff);
+    color: var(--text-primary, #374151);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.settings-system-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    padding-top: 20px;
+}
+
+.settings-system-item {
+    padding: 15px;
+    background: var(--surface-light, #f8fafc);
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 10px;
+}
+
+.settings-system-item span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: var(--text-secondary, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.settings-system-item strong {
+    display: block;
+    font-size: 14px;
+    color: var(--text-primary, #1f2937);
+}
+
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.settings-reset-button,
+.settings-save-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settings-reset-button {
+    border: 1px solid #d1d5db;
+    background: var(--surface, #ffffff);
+    color: var(--text-secondary, #4b5563);
+}
+
+.settings-reset-button:hover { background: var(--surface-light, #f9fafb); }
+
+.settings-save-button {
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.settings-save-button:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.settings-message {
+    min-height: 20px;
+    margin-top: 12px;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.settings-message.success { color: #15803d; }
+.settings-message.error { color: #dc2626; }
+
+.settings-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.dark-theme .settings-card {
+    border-color: var(--border);
+}
+
+.dark-theme .settings-card-icon.system {
+    background: var(--surface-light);
+    color: var(--text-secondary);
+}
+
+.dark-theme .settings-select {
+    border-color: var(--border);
+}
+
+@media (max-width: 900px) {
+    .settings-system-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+    .settings-card { padding: 18px; }
+    .settings-option { align-items: flex-start; }
+    .settings-option-content { padding-right: 10px; }
+    .settings-system-grid { grid-template-columns: 1fr; }
+    .settings-actions { flex-direction: column-reverse; align-items: stretch; }
+    .settings-reset-button,
+    .settings-save-button { width: 100%; }
+}
+
+@media (max-width: 450px) {
+    .settings-card-header { align-items: flex-start; }
+    .settings-card-icon { width: 40px; height: 40px; font-size: 17px; }
+    .settings-card-header h3 { font-size: 15px; }
+    .settings-card-header p { font-size: 12px; }
+    .settings-option { gap: 12px; }
+    .settings-select { min-width: 125px; }
+}
