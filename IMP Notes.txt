@@ -1,0 +1,8 @@
+Run the following commands to get into Backend folder to Activate Spring Boot
+1. Get-ChildItem -Directory
+2. cd .\JalRakshak
+3. Get-ChildItem
+4. cd .\backend\jalrakshak-backend
+
+Confirm Yourself in backend Folder then Run
+mvn spring-boot:run
