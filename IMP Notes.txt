@@ -6,3 +6,5 @@ Run the following commands to get into Backend folder to Activate Spring Boot
 
 Confirm Yourself in backend Folder then Run
 mvn spring-boot:run
+
+Copy JalrakshakFinalDB.sql query to your MySQl to create the database
