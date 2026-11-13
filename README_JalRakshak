@@ -1,0 +1,463 @@
+# JalRakshak
+
+**AI-Based Water Quality Anomaly Detection and Response Prioritisation**
+
+JalRakshak is a water-intelligence web application designed to support
+monitoring of waterbodies, review of water-quality observations,
+identification of unusual readings, and prioritisation of follow-up
+actions. It brings monitoring data and operational workflows together
+through a web frontend, a Java Spring Boot backend, a MySQL database,
+and a Python-based AI/analytics component.
+
+> **Project status:** Development project. The source repository is
+> available on GitHub. Local backend startup and the `/api/health`
+> endpoint have been tested by the project developer. Cloud deployment
+> is still in progress; no public production URL is claimed here.
+
+**GitHub:** https://github.com/OmkarPatil-06/JalRakshak
+
+------------------------------------------------------------------------
+
+## Contents
+
+-   [Project objectives](#project-objectives)
+-   [Features and modules](#features-and-modules)
+-   [Technology stack](#technology-stack)
+-   [Repository structure](#repository-structure)
+-   [Architecture](#architecture)
+-   [Prerequisites](#prerequisites)
+-   [Local setup](#local-setup)
+-   [Database setup](#database-setup)
+-   [Run the application](#run-the-application)
+-   [API health check](#api-health-check)
+-   [AI model component](#ai-model-component)
+-   [Data quality and verification](#data-quality-and-verification)
+-   [Configuration and security](#configuration-and-security)
+-   [Deployment plan](#deployment-plan)
+-   [Limitations](#limitations)
+-   [Contributing](#contributing)
+-   [License](#license)
+
+## Project objectives
+
+1.  Provide a central interface for viewing waterbody and water-quality
+    information.
+2.  Help users review sensor observations and identify readings that may
+    need attention.
+3.  Organise alerts and response activities so issues can be
+    investigated and tracked.
+4.  Provide a route for citizens to submit water-related reports.
+5.  Preserve data-source and verification information so observations
+    can be assessed before being treated as reliable.
+6.  Explore data-driven analysis and prediction to support water-quality
+    monitoring.
+
+JalRakshak is intended as a decision-support and monitoring tool. It
+does not replace laboratory testing, regulatory assessment, or decisions
+by qualified water-quality authorities.
+
+## Features and modules
+
+The repository contains frontend modules and backend controllers for the
+following areas:
+
+  -----------------------------------------------------------------------
+  Module                              Purpose
+  ----------------------------------- -----------------------------------
+  Dashboard                           Presents an overview of monitoring
+                                      and operational information.
+
+  Waterbody monitoring                Displays waterbodies represented in
+                                      the database.
+
+  Water analysis and insights         Supports review and visualisation
+                                      of water-quality observations.
+
+  Monitoring map                      Provides a map-oriented view of
+                                      monitoring locations.
+
+  Alerts                              Supports recording and reviewing
+                                      water-quality alerts.
+
+  Response management                 Organises actions associated with
+                                      alerts and their statuses.
+
+  Citizen reports                     Provides a workflow for submitting
+                                      and reviewing public reports.
+
+  Sensor-data verification            Supports review of sensor-data
+                                      provenance and verification status.
+
+  Reports                             Provides reporting and summary
+                                      views.
+
+  Settings and interface preferences  Includes frontend settings, theme,
+                                      language and notification-related
+                                      modules.
+
+  AI/analytics scripts                Contains Python scripts for model
+                                      training and prediction.
+  -----------------------------------------------------------------------
+
+The availability and behaviour of individual modules depend on the
+current database contents, configuration, and successful API
+integration.
+
+## Technology stack
+
+  Layer                      Technologies
+  -------------------------- ---------------------------------------
+  Frontend                   HTML5, CSS3, JavaScript
+  UI and visual components   Bootstrap 5, Bootstrap Icons, Leaflet
+  Backend                    Java, Spring Boot
+  API                        Spring MVC / REST controllers
+  Persistence                Spring Data JPA / Hibernate
+  Database                   MySQL
+  Database connectivity      MySQL Connector/J
+  AI / analytics component   Python
+  Build tooling              Maven Wrapper
+  Development environment    Visual Studio Code
+
+The backend project uses Spring Boot **4.1.1** in the version currently
+documented by the project files. Confirm the installed JDK and Maven
+requirements against `backend/jalrakshak-backend/pom.xml` when setting
+up another machine.
+
+## Repository structure
+
+``` text
+JalRakshak/
+├── .gitignore
+├── ai-model/
+│   ├── predict.py
+│   ├── train_model.py
+│   └── requirements.txt
+├── backend/
+│   └── jalrakshak-backend/
+│       ├── .mvn/
+│       ├── mvnw
+│       ├── mvnw.cmd
+│       ├── pom.xml
+│       ├── application-local.properties.example
+│       └── src/
+│           ├── main/
+│           │   ├── java/com/jalrakshak/backend/
+│           │   │   ├── config/
+│           │   │   ├── controller/
+│           │   │   ├── model/
+│           │   │   ├── repository/
+│           │   │   └── service/
+│           │   └── resources/
+│           │       └── application.properties
+│           └── test/
+├── database/
+│   ├── jalrakshak.sql
+│   ├── migration_direct_admin_verification.sql
+│   ├── migration_manual_alerts_sensor_optional.sql
+│   ├── migration_sensor_data_provenance.sql
+│   ├── migration_verification_roles_and_audit.sql
+│   ├── operations_features_queries.sql
+│   └── seed_all_51_waterbodies_for_operations.sql
+└── frontend/
+    ├── index.html
+    ├── css/
+    └── js/
+```
+
+The exact files may evolve as the project is updated. The backend uses a
+standard controller, model, repository, and service organisation.
+
+## Architecture
+
+``` text
+Browser
+   |
+   v
+Frontend (HTML, CSS, JavaScript)
+   |
+   | HTTP / REST API requests
+   v
+Spring Boot Backend
+   |
+   | Spring Data JPA / Hibernate
+   v
+MySQL Database
+
+Python AI / analytics scripts
+   |
+   v
+Model training and prediction workflows
+```
+
+The frontend communicates with the backend through HTTP API requests.
+The backend handles application logic and database operations. The
+Python scripts are maintained separately in `ai-model/`; their execution
+and integration should be configured according to the scripts and
+requirements in that folder.
+
+## Prerequisites
+
+-   Git
+-   JDK compatible with the Java version configured in the Maven project
+-   MySQL Server and a MySQL client (for example, MySQL Workbench)
+-   Visual Studio Code or another code editor
+-   A modern web browser
+-   Python 3, if you intend to run the AI/analytics scripts
+
+The Maven Wrapper (`mvnw.cmd`) is included, so a separate Maven
+installation is not normally required.
+
+## Local setup
+
+### 1. Clone the repository
+
+``` powershell
+git clone https://github.com/OmkarPatil-06/JalRakshak.git
+cd JalRakshak
+```
+
+### 2. Create the MySQL database
+
+Start MySQL Server and create the database used by the local
+configuration:
+
+``` sql
+CREATE DATABASE jalrakshak_db;
+```
+
+### 3. Configure the backend database connection
+
+The backend configuration is located at:
+
+`backend/jalrakshak-backend/src/main/resources/application.properties`
+
+The current configuration supports environment-variable overrides:
+
+``` properties
+spring.config.import=optional:file:./application-local.properties
+spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/jalrakshak_db}
+spring.datasource.username=${DB_USERNAME:root}
+spring.datasource.password=${DB_PASSWORD:}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+```
+
+A local configuration example is provided at:
+
+`backend/jalrakshak-backend/application-local.properties.example`
+
+For local development:
+
+1.  Open the example file.
+2.  Create a local file named `application-local.properties` in the
+    backend project directory (`backend/jalrakshak-backend/`).
+3.  Add your local database settings to that file.
+4.  Keep the real local file private. It should remain excluded by
+    `.gitignore`.
+
+Do not put real database passwords, API keys, or other secrets in
+tracked files.
+
+### 4. Initialise the database schema and data
+
+SQL scripts are stored in `database/`:
+
+-   `jalrakshak.sql` --- base database schema and initial database
+    setup.
+-   `seed_all_51_waterbodies_for_operations.sql` --- waterbody seed data
+    for the operations workflow.
+-   `migration_sensor_data_provenance.sql` --- sensor-data source and
+    provenance fields.
+-   `migration_manual_alerts_sensor_optional.sql` --- schema changes
+    related to alert/sensor-data handling.
+-   `migration_direct_admin_verification.sql` --- verification workflow
+    database changes.
+-   `migration_verification_roles_and_audit.sql` --- verification roles
+    and audit-related database changes.
+-   `operations_features_queries.sql` --- supporting operational SQL
+    queries.
+
+    
+
+**Important:** Review each script before executing it and follow its
+comments and dependencies. Back up an existing database before applying
+migrations. Do not blindly execute every script against a database that
+already contains project data. Avoid importing demonstration data as if
+it were verified real-world measurements.
+
+## Run the application
+
+### 1. Start the backend
+
+Open PowerShell and navigate to the backend project directory:
+
+``` powershell
+cd backend/jalrakshak-backend
+```
+
+On Windows, run:
+
+``` powershell
+.\mvnw.cmd spring-boot:run
+```
+
+The backend is configured to use port `8080` by default, unless
+overridden by configuration.
+
+### 2. Open the frontend
+
+The frontend is a static web application in `frontend/`.
+
+You can open `frontend/index.html` through Visual Studio Code's Live
+Server extension, or serve the `frontend/` directory using another
+static web server.
+
+The frontend must be configured to send API requests to the backend's
+actual base URL. For local development, this is commonly:
+
+``` text
+http://localhost:8080
+```
+
+If the frontend is served from a different origin or port, the backend
+CORS configuration must allow that origin.
+
+### 3. Run the Python component (optional)
+
+From the repository root:
+
+``` powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r .\ai-model\requirements.txt
+```
+
+Review `ai-model/train_model.py`, `ai-model/predict.py`, and
+`ai-model/requirements.txt` for the exact input data format and
+execution arguments before running the scripts. The AI scripts are a
+separate component; do not assume every frontend prediction view
+automatically invokes them unless that integration has been configured.
+
+## API health check
+
+When the backend is running, open:
+
+``` text
+http://localhost:8080/api/health
+```
+
+The health endpoint is intended to indicate whether the backend is
+running. A successful health response alone does not prove that every
+database-backed feature is working. Test database connectivity and
+relevant API workflows separately.
+
+## AI model component
+
+The `ai-model/` directory contains:
+
+-   `train_model.py` --- model-training script.
+-   `predict.py` --- prediction script.
+-   `requirements.txt` --- Python dependencies.
+
+Refer to these scripts for the exact model approach, input columns,
+preprocessing steps, and execution arguments. Model outputs should be
+treated as analytical support rather than confirmed laboratory
+measurements.
+
+## Data quality and verification
+
+Water-quality information is useful only when its source and context are
+understood.
+
+For each sensor observation, retain relevant provenance details where
+available, such as:
+
+-   Monitoring location and sampling point
+-   Observation or sampling date
+-   Water-quality parameter and unit
+-   Source organisation or dataset
+-   Source URL or report reference
+-   Sampling method
+-   Verification status
+-   Reviewer and verification timestamp, where applicable
+
+Records without sufficient supporting evidence should remain clearly
+marked as unverified. Do not describe synthetic/demo readings as
+official measurements. A month marker in a dataset should not be
+presented as an exact sampling date unless the source confirms that
+date.
+
+Predictions and anomaly indicators are decision-support outputs. They
+should be interpreted alongside source data, sampling context, and
+qualified review.
+
+## Configuration and security
+
+-   Never commit `application-local.properties`, `.env`, passwords, API
+    keys, tokens, or private certificates.
+-   Use environment variables for cloud database credentials.
+-   Use encrypted database connections (TLS/SSL) when required by the
+    database provider.
+-   Restrict administrator and verification operations to authenticated,
+    authorised users before making the service publicly accessible.
+-   Validate user-submitted data on the backend.
+-   Use HTTPS for public deployments.
+-   Back up the database before schema migrations or bulk data
+    corrections.
+-   Avoid exposing stack traces, database connection strings, or secrets
+    in public error messages and logs.
+
+## Deployment plan
+
+The planned hosting architecture is:
+
+  -----------------------------------------------------------------------
+  Component               Planned platform        Responsibility
+  ----------------------- ----------------------- -----------------------
+  Source code             GitHub                  Version control and
+                                                  deployment source
+
+  Frontend                Vercel                  Static website hosting
+
+  Backend                 Render                  Spring Boot API hosting
+
+  Database                MySQL-compatible        Persistent application
+                          managed provider        data
+  -----------------------------------------------------------------------
+
+Cloud deployment is not yet represented as completed in this README.
+Before deploying, configure the backend for the hosting provider's port
+and environment variables, configure frontend API URLs and CORS, secure
+administrative endpoints, and verify database migrations. Review current
+pricing, quotas, sleep behaviour, and terms of each provider before
+selecting a plan.
+
+## Limitations
+
+-   Dashboard, alert, history, and prediction quality depends on the
+    completeness and reliability of available data.
+-   The presence of a waterbody in the database does not imply that
+    current verified sensor readings are available for it.
+-   Demo or synthetic data must be identified as such.
+-   Model outputs should not be treated as laboratory results or
+    official regulatory findings.
+-   The project is a student development project and has not been
+    independently validated as a public water-quality monitoring system.
+
+## Contributing
+
+Contributions and suggestions are welcome.
+
+1.  Fork the repository.
+2.  Create a feature branch.
+3.  Make focused changes and test them locally.
+4.  Avoid committing credentials, local configuration, or build output.
+5.  Submit a pull request describing the changes and tests performed.
+
+Repository: https://github.com/OmkarPatil-06/JalRakshak
+
+## License
+
+No license is specified in this repository documentation yet. Unless a
+license is added to the repository, reuse and redistribution permissions
+are not explicitly granted. Add an appropriate `LICENSE` file before
+inviting external reuse or contributions under open-source terms.
